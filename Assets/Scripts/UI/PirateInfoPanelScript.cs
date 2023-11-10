@@ -15,35 +15,27 @@ public class PirateInfoPanelScript : MonoBehaviour
 
     private PlayerManagementController _playerManagementController;
 
-    void Start()
-    {
-        _nameText = GameObject.Find("Name");
-        _statsText = GameObject.Find("StatsText");
-
-        _playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
-    }
-
     public void SetPirate(int pirateId)
     {
+        if (_playerManagementController == null)
+            _playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
+
         _pirate = _playerManagementController.GetPirateById(pirateId);
         UpdateUi();
     }
 
     private void UpdateUi()
     {
+        if (_nameText == null) _nameText = GameObject.Find("Name");
+        if (_statsText == null) _statsText = GameObject.Find("StatsText");
+
         _nameText.GetComponent<TextMeshProUGUI>().text = _pirate.Name;
 
         var textField = _statsText.GetComponent<TextMeshProUGUI>();
-        textField.text = "";
 
-        var statsText = new StringBuilder();
+        var text = UiTextFormatter.GetPirateInfoAsText(_pirate);
+        var pirateStatus = $"Status: {(_pirate.IsBusy == true ? "Busy" : "Available")}\n";
 
-        statsText.Append($"HP: {_pirate.Hp}/{_pirate.MaxHp}\n");
-        statsText.Append($"Energy: {_pirate.Energy}/{_pirate.MaxEnergy}\n");
-        statsText.Append($"Attack: {_pirate.AttackingPoints}\n");
-        statsText.Append($"Mining: {_pirate.MiningPoints}\n");
-        statsText.Append($"Cooking: {_pirate.CookingPoints}\n");
-
-        textField.text = statsText.ToString();
+        textField.text = text + pirateStatus;
     }
 }

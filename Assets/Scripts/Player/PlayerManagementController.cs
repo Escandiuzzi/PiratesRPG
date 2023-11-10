@@ -16,15 +16,16 @@ public class PlayerManagementController : MonoBehaviour
 
     public Pirate GetPirateById(int id) => _crew.First(x => x.Id == id);
 
-    public List<Pirate> GetCrew() => _crew;
+    public IList<Pirate> GetCrew() => _crew;
+
+    public IList<Pirate> GetAvailablePirates() => _crew.Where(x => x.IsBusy == false).ToList();
 
     private void AddFakeCrewData()
     {
-        _crew.Add(CreateFakePirate(0, "Luiz"));
-        _crew.Add(CreateFakePirate(1, "Felipe"));
-        _crew.Add(CreateFakePirate(2, "Escandiuzzi"));
+        _crew.Add(CreateFakePirate(0, "John"));
+        _crew.Add(CreateFakePirate(1, "Bonny"));
+        _crew.Add(CreateFakePirate(2, "Morgan"));
     }
 
     private Pirate CreateFakePirate(int id, string name) => new(id, name, true);
-    
 }

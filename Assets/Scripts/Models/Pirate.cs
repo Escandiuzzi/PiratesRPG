@@ -14,8 +14,6 @@ public class Pirate
 
     public int MaxEnergy { private set; get; }
 
-    public bool Busy { private set; get; }
-
     public int AttackingPoints { private set; get; }
 
     public int MiningPoints { private set; get; }
@@ -23,6 +21,8 @@ public class Pirate
     public int CookingPoints { private set; get; }
 
     public int[] SpecialAttackIds { private set; get; }
+
+    public bool IsBusy { set; get; }
 
     // Weapon { private set; get; }
     // Shield { private set; get; }

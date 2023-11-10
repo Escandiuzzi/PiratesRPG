@@ -61,6 +61,7 @@ public class PlayerUIController : MonoBehaviour
         if (_isCrewPanelOpen)
         {
             _crewPanel.SetActive(false);
+            _infoPanel.SetActive(false);
             _isCrewPanelOpen = false;
             HideSlotButtons();
             return;

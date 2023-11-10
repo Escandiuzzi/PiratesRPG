@@ -8,7 +8,6 @@ public class CrewSlotButtonHandler : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public int PirateId { get; set; }
 
-    // Start is called before the first frame update
     void Start()
     {
         _infoPanel = GameObject.Find("InfoPanel");
