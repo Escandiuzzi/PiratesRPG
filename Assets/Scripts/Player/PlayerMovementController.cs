@@ -53,18 +53,15 @@ public class PlayerMovementController : MonoBehaviour
     /// Gets all event systen raycast results of current mouse or touch position.
     static List<RaycastResult> GetEventSystemRaycastResults()
     {
-        PointerEventData eventData = new PointerEventData(EventSystem.current);
-        eventData.position = Input.mousePosition;
+        PointerEventData eventData = new(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
 
-        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        List<RaycastResult> raysastResults = new();
         EventSystem.current.RaycastAll(eventData, raysastResults);
 
         return raysastResults;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
     }
 
     private void SetDestination()

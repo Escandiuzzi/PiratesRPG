@@ -1,0 +1,644 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "damage": 0,
+            "durability": 0,
+            "heal": 2,
+            "name": "Pao",
+            "type": 0,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 1,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Feijao",
+            "type": 0,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 2,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Carne",
+            "type": 0,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 3,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Peixe",
+            "type": 0,
+            "rarity": 1,
+            "region": 0
+        },
+        {
+            "id": 4,
+            "damage": 0,
+            "durability": 0,
+            "heal": 8,
+            "name": "Churrasco",
+            "type": 0,
+            "rarity": 2,
+            "region": 0
+        },
+        {
+            "id": 5,
+            "damage": 0,
+            "durability": 0,
+            "heal": 8,
+            "name": "Salchipao",
+            "type": 0,
+            "rarity": 2,
+            "region": 0
+        },
+        {
+            "id": 6,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Couro",
+            "type": 1,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 7,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Madeira",
+            "type": 1,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 8,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Metal",
+            "type": 1,
+            "rarity": 1,
+            "region": 0
+        },
+        {
+            "id": 9,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Ouro",
+            "type": 1,
+            "rarity": 2,
+            "region": 0
+        },
+        {
+            "id": 10,
+            "damage": 2,
+            "durability": 8,
+            "heal": 0,
+            "name": "Espada",
+            "type": 2,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 11,
+            "damage": 0,
+            "durability": 6,
+            "heal": 2,
+            "name": "Armadura",
+            "type": 3,
+            "rarity": 0,
+            "region": 0
+        },
+        {
+            "id": 12,
+            "damage": 0,
+            "durability": 1,
+            "heal": 5,
+            "name": "Bombacha",
+            "type": 3,
+            "rarity": 1,
+            "region": 0
+        },
+        {
+            "id": 13,
+            "damage": 0,
+            "durability": 1,
+            "heal": 8,
+            "name": "Bombacha",
+            "type": 3,
+            "rarity": 2,
+            "region": 0
+        },
+        {
+            "id": 14,
+            "damage": 7,
+            "durability": 8,
+            "heal": 0,
+            "name": "Laço",
+            "type": 2,
+            "rarity": 2,
+            "region": 0
+        },
+        {
+            "id": 15,
+            "damage": 0,
+            "durability": 0,
+            "heal": 2,
+            "name": "Pao",
+            "type": 0,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 16,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Peixe",
+            "type": 0,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 17,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Feijao",
+            "type": 0,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 18,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Cebola",
+            "type": 0,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 19,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Pimentao",
+            "type": 0,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 20,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Carne",
+            "type": 0,
+            "rarity": 1,
+            "region": 2
+        },
+        {
+            "id": 21,
+            "damage": 0,
+            "durability": 0,
+            "heal": 8,
+            "name": "Acaraje",
+            "type": 0,
+            "rarity": 2,
+            "region": 2
+        },
+        {
+            "id": 22,
+            "damage": 0,
+            "durability": 0,
+            "heal": 9,
+            "name": "Moqueca",
+            "type": 0,
+            "rarity": 2,
+            "region": 2
+        },
+        {
+            "id": 23,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Couro",
+            "type": 1,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 24,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Madeira",
+            "type": 1,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 25,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Metal",
+            "type": 1,
+            "rarity": 1,
+            "region": 2
+        },
+        {
+            "id": 26,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Ouro",
+            "type": 1,
+            "rarity": 2,
+            "region": 2
+        },
+        {
+            "id": 27,
+            "damage": 3,
+            "durability": 8,
+            "heal": 0,
+            "name": "Espada",
+            "type": 2,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 28,
+            "damage": 0,
+            "durability": 6,
+            "heal": 2,
+            "name": "Armadura",
+            "type": 3,
+            "rarity": 0,
+            "region": 2
+        },
+        {
+            "id": 29,
+            "damage": 0,
+            "durability": 8,
+            "heal": 6,
+            "name": "Chapeu de Cangaceiro",
+            "type": 3,
+            "rarity": 2,
+            "region": 2
+        },
+        {
+            "id": 30,
+            "damage": 0,
+            "durability": 0,
+            "heal": 2,
+            "name": "Pao",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 31,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Carne",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 32,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Feijao",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 33,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Cebola",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 34,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Pimentao",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 35,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Queijo",
+            "type": 0,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 36,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Peixe",
+            "type": 0,
+            "rarity": 1,
+            "region": 1
+        },
+        {
+            "id": 37,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Pao de Queijo",
+            "type": 0,
+            "rarity": 1,
+            "region": 1
+        },
+        {
+            "id": 38,
+            "damage": 0,
+            "durability": 0,
+            "heal": 8,
+            "name": "Feijoada",
+            "type": 0,
+            "rarity": 2,
+            "region": 1
+        },
+        {
+            "id": 39,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Couro",
+            "type": 1,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 40,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Madeira",
+            "type": 1,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 41,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Metal",
+            "type": 1,
+            "rarity": 1,
+            "region": 1
+        },
+        {
+            "id": 42,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Ouro",
+            "type": 1,
+            "rarity": 2,
+            "region": 1
+        },
+        {
+            "id": 43,
+            "damage": 2,
+            "durability": 8,
+            "heal": 0,
+            "name": "Espada",
+            "type": 2,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 44,
+            "damage": 0,
+            "durability": 6,
+            "heal": 2,
+            "name": "Armadura",
+            "type": 3,
+            "rarity": 0,
+            "region": 1
+        },
+        {
+            "id": 45,
+            "damage": 5,
+            "durability": 8,
+            "heal": 0,
+            "name": "Laco",
+            "type": 2,
+            "rarity": 2,
+            "region": 1
+        },
+        {
+            "id": 46,
+            "damage": 0,
+            "durability": 0,
+            "heal": 2,
+            "name": "Pato",
+            "type": 0,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 47,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Feijao",
+            "type": 0,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 48,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Mandioca",
+            "type": 0,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 49,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Tapioca",
+            "type": 0,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 50,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Tucupi",
+            "type": 0,
+            "rarity": 1,
+            "region": 3
+        },
+        {
+            "id": 51,
+            "damage": 0,
+            "durability": 0,
+            "heal": 1,
+            "name": "Maniva",
+            "type": 0,
+            "rarity": 1,
+            "region": 3
+        },
+        {
+            "id": 52,
+            "damage": 0,
+            "durability": 0,
+            "heal": 8,
+            "name": "Maniçoba",
+            "type": 0,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 53,
+            "damage": 0,
+            "durability": 0,
+            "heal": 7,
+            "name": "Pato no tucupi",
+            "type": 0,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 54,
+            "damage": 0,
+            "durability": 0,
+            "heal": 12,
+            "name": "Moqueca no norte",
+            "type": 0,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 55,
+            "damage": 0,
+            "durability": 0,
+            "heal": 10,
+            "name": "Tacacá",
+            "type": 0,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 56,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Couro",
+            "type": 1,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 57,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Madeira",
+            "type": 1,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 58,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Metal",
+            "type": 1,
+            "rarity": 1,
+            "region": 3
+        },
+        {
+            "id": 59,
+            "damage": 0,
+            "durability": 0,
+            "heal": 0,
+            "name": "Ouro",
+            "type": 1,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 60,
+            "damage": 2,
+            "durability": 8,
+            "heal": 0,
+            "name": "Espada",
+            "type": 2,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 61,
+            "damage": 0,
+            "durability": 6,
+            "heal": 2,
+            "name": "Armadura",
+            "type": 3,
+            "rarity": 0,
+            "region": 3
+        },
+        {
+            "id": 62,
+            "damage": 5,
+            "durability": 8,
+            "heal": 0,
+            "name": "Flecha Indígena",
+            "type": 2,
+            "rarity": 2,
+            "region": 3
+        },
+        {
+            "id": 63,
+            "damage": 6,
+            "durability": 8,
+            "heal": 0,
+            "name": "Carimbó",
+            "type": 2,
+            "rarity": 2,
+            "region": 3
+        }
+    ]
+}

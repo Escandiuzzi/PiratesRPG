@@ -6,7 +6,10 @@ public class PlayerManagementController : MonoBehaviour
 {
     [SerializeField]
     private List<Pirate> _crew;
-    
+
+    [SerializeField]
+    private List<Item> _inventory;
+
     void Start()
     {
         _crew = new List<Pirate>();
@@ -19,6 +22,11 @@ public class PlayerManagementController : MonoBehaviour
     public IList<Pirate> GetCrew() => _crew;
 
     public IList<Pirate> GetAvailablePirates() => _crew.Where(x => x.IsBusy == false).ToList();
+
+    public void LootRewards(Item[] items)
+    {
+        _inventory.AddRange(items);
+    }
 
     private void AddFakeCrewData()
     {
