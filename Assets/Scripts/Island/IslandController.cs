@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +17,8 @@ public class IslandController : MonoBehaviour
 
     public int MaxRewardsNumber;
 
+    public bool Renewable;
+
     public bool _hasActivityStarted;
 
     public GameObject InfoPanel;
@@ -28,6 +32,10 @@ public class IslandController : MonoBehaviour
     public GameObject JoinButton;
 
     public GameObject CollectButton;
+
+    public GameObject RewardsText;
+
+    public GameObject InfoText;
 
     [SerializeField]
     private GameObject[] _slots;
@@ -50,11 +58,17 @@ public class IslandController : MonoBehaviour
     [SerializeField]
     private float _progressValue;
 
+    [SerializeField]
+    private ItemsManager _itemsManager;
+
     void Start()
     {
         _playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
         _progressBarSlider = ProgressBar.GetComponent<Slider>();
         _piratesOnIsland = new List<Pirate>();
+        _itemsManager = GameObject.Find("ItemsManager").GetComponent<ItemsManager>();
+
+        InfoText.GetComponent<TextMeshProUGUI>().text = $"{IslandType} Island \n\n Only {Capacity} pirates allowed";
 
         _slots = new GameObject[8];
 
@@ -90,7 +104,6 @@ public class IslandController : MonoBehaviour
             _currentIdleTime = 1;
         else
             _currentIdleTime = IdleTime - miningPoints;
-
 
         _progressBarSlider.maxValue = _currentIdleTime;
     }
@@ -145,13 +158,26 @@ public class IslandController : MonoBehaviour
     {
         InfoPanel.SetActive(false);
         RewardsPanel.SetActive(true);
+        CollectButton.SetActive(false);
 
-        GetRewards();
+        CollectRewards();
     }
 
-    private void GetRewards()
+    private void CollectRewards()
     {
+        var rewards = _itemsManager.GetItems(MaxRewardsNumber, Region);
+        var sb = new StringBuilder();
 
+        foreach (var item in rewards) sb.Append($"{item.Key.Name} {item.Value}x | {item.Key.Rarity}\n");
+        
+        RewardsText.GetComponent<TextMeshProUGUI>().text = sb.ToString();
+
+        _playerManagementController.StoreItems(rewards);
+    }
+
+    public void OnCloseButtonPressed()
+    {
+        CloseAllPanels();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -168,6 +194,7 @@ public class IslandController : MonoBehaviour
     {
         InfoPanel.SetActive(false);
         PirateSelectionPanel.SetActive(false);
+        RewardsPanel.SetActive(false);
     }
 
     private void HideSlots()
@@ -182,49 +209,3 @@ public enum IslandType
     Exploration = 1,
     Battle = 2
 }
-
-
-/*
- func _getRewards():	
-	randomize();
-	var rewardN = randi() % maxRewards + 1;
-	var rewards = {};
-	for i in range(rewardN):
-		#/////////////////////////////////////////
-		var rarity = randi() % 100 + 1;
-		var _item = item.instance();
-
-		if rarity >= 90:
-			var randReward = randi() % rareSize;
-			_item._read_json_data(randReward, regionName, "Rare", islandType);
-			_item._print_data();
-		elif rarity >= 60 and rarity < 90:
-			var randReward = randi() % uncommonSize;
-			_item._read_json_data(randReward, regionName, "Uncommon", islandType);
-			_item._print_data();
-		else:
-			var randReward = randi() % commonSize;
-			_item._read_json_data(randReward, regionName, "Common", islandType);
-			_item._print_data();
-		
-		if rewards.has(_item._get_name()):
-			var item_count = rewards[_item._get_name()];
-			item_count += 1;
-			rewards[_item._get_name()] = item_count;
-		else:
-			rewards[_item._get_name()] = 1;
-		
-		#rewardText.text += _item._get_name();
-		#rewardText.text += "\n";
-		emit_signal("send_player_reward", _item);
-		#/////////////////////////////////////////
-		
-	var keys = rewards.keys();
-	for i in range(rewards.size()):
-		rewardText.text += str(rewards[keys[i]]);
-		rewardText.text += "x ";
-		rewardText.text += keys[i];
-		rewardText.text += "\n";
-	
-	pass;
- */

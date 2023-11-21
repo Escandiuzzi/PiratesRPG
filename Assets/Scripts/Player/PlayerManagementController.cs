@@ -8,25 +8,23 @@ public class PlayerManagementController : MonoBehaviour
     private List<Pirate> _crew;
 
     [SerializeField]
-    private List<Item> _inventory;
+    private Dictionary<Item, int> _inventory;
 
     void Start()
     {
         _crew = new List<Pirate>();
+        _inventory = new Dictionary<Item, int>();
 
         AddFakeCrewData();
     }
+
+    public IDictionary<Item, int> GetInventory() => _inventory;
 
     public Pirate GetPirateById(int id) => _crew.First(x => x.Id == id);
 
     public IList<Pirate> GetCrew() => _crew;
 
     public IList<Pirate> GetAvailablePirates() => _crew.Where(x => x.IsBusy == false).ToList();
-
-    public void LootRewards(Item[] items)
-    {
-        _inventory.AddRange(items);
-    }
 
     private void AddFakeCrewData()
     {
@@ -36,4 +34,13 @@ public class PlayerManagementController : MonoBehaviour
     }
 
     private Pirate CreateFakePirate(int id, string name) => new(id, name, true);
+
+    public void StoreItems(IDictionary<Item, int> rewards)
+    {
+        foreach (var item in rewards)
+        {
+            if (_inventory.ContainsKey(item.Key)) _inventory[item.Key] += item.Value;
+            else _inventory.Add(item.Key, item.Value);
+        }
+    }
 }

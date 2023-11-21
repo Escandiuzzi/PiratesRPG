@@ -1,3 +1,4 @@
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -22,21 +23,34 @@ public class PlayerUIController : MonoBehaviour
     private PlayerManagementController _playerManagement;
 
     [SerializeField]
+    private GameObject _inventoryPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI _inventoryText;
+
+    [SerializeField]
     private bool _isCrewPanelOpen;
+
+    private StringBuilder _sb;
 
     void Start()
     {
+        _sb = new StringBuilder();
+
         _crewSlotButtons = new GameObject[8];
         FindSlotButtonsAtPanel();
 
         _hud = GameObject.Find("Hud");
         _crewPanel = GameObject.Find("CrewSlotPanel");
         _infoPanel = GameObject.Find("InfoPanel");
+        _inventoryPanel = GameObject.Find("InventoryPanel");
+        _inventoryText = _inventoryPanel.transform.Find("Panel/Text").GetComponent<TextMeshProUGUI>();
 
         _playerManagement = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
 
         _crewPanel.SetActive(false);
         _infoPanel.SetActive(false);
+        _inventoryPanel.SetActive(false);
     }
 
     private void FindSlotButtonsAtPanel()
@@ -56,7 +70,10 @@ public class PlayerUIController : MonoBehaviour
 
     private void CrewPanelInteraction()
     {
+        UpdateInventoryInfo();
+
         _crewPanel.SetActive(!_crewPanel.activeSelf);
+        _inventoryPanel.SetActive(!_inventoryPanel.activeSelf);
 
         if (_isCrewPanelOpen)
         {
@@ -82,6 +99,17 @@ public class PlayerUIController : MonoBehaviour
             button.GetComponent<CrewSlotButtonHandler>().PirateId = pirate.Id;
             button.SetActive(true);
         }
+    }
+
+    private void UpdateInventoryInfo()
+    {
+        _sb.Clear();
+
+        var inventory = _playerManagement.GetInventory();
+
+        foreach (var item in inventory) _sb.Append($"{item.Key.Name} {item.Value}x \n");
+        
+        _inventoryText.text = _sb.ToString();
     }
 
     private void HideSlotButtons() { foreach (var slot in _crewSlotButtons) slot.SetActive(false); }
