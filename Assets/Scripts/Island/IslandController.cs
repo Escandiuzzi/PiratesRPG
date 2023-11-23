@@ -7,111 +7,154 @@ using UnityEngine.UI;
 
 public class IslandController : MonoBehaviour
 {
-    public Region Region;
+    public Region region;
 
-    public IslandType IslandType;
+    public IslandType islandType;
 
-    public float IdleTime;
+    public float idleTime;
 
-    public int Capacity;
+    public int capacity;
 
-    public int MaxRewardsNumber;
+    public int maxRewardsNumber;
 
-    public bool Renewable;
-
-    public bool _hasActivityStarted;
-
-    public GameObject InfoPanel;
-
-    public GameObject PirateSelectionPanel;
-
-    public GameObject RewardsPanel;
-
-    public GameObject ProgressBar;
-
-    public GameObject JoinButton;
-
-    public GameObject CollectButton;
-
-    public GameObject RewardsText;
-
-    public GameObject InfoText;
+    public bool renewable;
+        
+    public int renewWaitTime;
+   
+    [SerializeField]
+    private GameObject infoPanel;
 
     [SerializeField]
-    private GameObject[] _slots;
+    private GameObject pirateSelectionPanel;
 
     [SerializeField]
-    private float _currentIdleTime;
+    private GameObject rewardsPanel;
 
     [SerializeField]
-    private Button _button;
+    private GameObject progressBar;
 
     [SerializeField]
-    private Slider _progressBarSlider;
+    private GameObject joinButton;
 
     [SerializeField]
-    private PlayerManagementController _playerManagementController;
+    private GameObject collectButton;
 
     [SerializeField]
+    private GameObject rewardsText;
+
+    [SerializeField]
+    private GameObject infoText;
+
+    private GameObject _player;
+
+    private PlayerMovementController _playerMovementController;
+    
+    [SerializeField] 
+    private GameObject[] slots;
+
+    [SerializeField] 
+    private float currentIdleTime;
+
+    [SerializeField] private Button button;
+
+    [SerializeField] private Slider progressBarSlider;
+
+    [SerializeField] private PlayerManagementController playerManagementController;
+
+    [SerializeField] private float progressValue;
+
+    [SerializeField] private ItemsManager itemsManager;
+
+    [SerializeField] private bool hasActivityStarted;
+    
+    [SerializeField] private bool hasRenewingStarted; 
+
     private List<Pirate> _piratesOnIsland;
 
-    [SerializeField]
-    private float _progressValue;
-
-    [SerializeField]
-    private ItemsManager _itemsManager;
-
-    void Start()
+    private int _piratesSelected;
+    
+    private void Start()
     {
-        _playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
-        _progressBarSlider = ProgressBar.GetComponent<Slider>();
+        playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
+        infoPanel = transform.Find("Canvas/IslandInfoPanel").gameObject;
+        pirateSelectionPanel = transform.Find("Canvas/PirateSelectionPanel").gameObject;
+        rewardsPanel = transform.Find("Canvas/RewardsPanel").gameObject;
+        progressBar = infoPanel.transform.Find("ProgressBar").gameObject;
+        joinButton = infoPanel.transform.Find("JoinButton").gameObject;
+        collectButton = infoPanel.transform.Find("CollectButton").gameObject;
+        infoText = infoPanel.transform.Find("InfoText").gameObject;
+        rewardsText = rewardsPanel.transform.Find("ItemsText").gameObject;
+        
+        progressBarSlider = progressBar.GetComponent<Slider>();
         _piratesOnIsland = new List<Pirate>();
-        _itemsManager = GameObject.Find("ItemsManager").GetComponent<ItemsManager>();
+        itemsManager = GameObject.Find("ItemsManager").GetComponent<ItemsManager>();
+        _player = GameObject.Find("Player");
+        _playerMovementController = _player.GetComponent<PlayerMovementController>();
+        
+        infoText.GetComponent<TextMeshProUGUI>().text = $"{islandType} Island \n\n Only {capacity} pirates allowed";
 
-        InfoText.GetComponent<TextMeshProUGUI>().text = $"{IslandType} Island \n\n Only {Capacity} pirates allowed";
+        slots = new GameObject[8];
 
-        _slots = new GameObject[8];
-
-        for (int i = 0; i < _slots.Length; i++)
-            _slots[i] = transform.Find($"Canvas/PirateSelectionPanel/Slots/Slot {i + 1}").gameObject;
+        for (var i = 0; i < slots.Length; i++)
+            slots[i] = transform.Find($"Canvas/PirateSelectionPanel/Slots/Slot {i + 1}").gameObject;
     }
 
-    void Update()
+    private void Update()
     {
-        if (_hasActivityStarted)
+        if (hasActivityStarted)
         {
-            _progressBarSlider.value += 0.05f * Time.deltaTime;
+            progressBarSlider.value += 0.05f * Time.deltaTime;
 
-            if (_progressBarSlider.value == _progressBarSlider.maxValue)
+            if (progressBarSlider.value == progressBarSlider.maxValue)
             {
-                _hasActivityStarted = false;
-                CollectButton.SetActive(true);
+                hasActivityStarted = false;
+                collectButton.SetActive(true);
             }
         }
 
-        //Todo - Cooldown Algo
+        if (hasRenewingStarted)
+        {
+            progressBarSlider.value -= 0.05f * Time.deltaTime;
+
+            if (progressBarSlider.value <= 0)
+            {
+                progressBar.SetActive(false);
+                joinButton.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        infoPanel.SetActive(true);
+        _playerMovementController.EnteredInIslandRange();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        CloseAllPanels();
     }
 
     private void GetProgressValue()
     {
-        _currentIdleTime = IdleTime;
+        currentIdleTime = idleTime;
 
         float miningPoints = _piratesOnIsland.Select(x => x.MiningPoints).Sum();
 
         Debug.Log($"Mining Points: {miningPoints}");
 
-        if (miningPoints > IdleTime)
-            _currentIdleTime = 1;
+        if (miningPoints > idleTime)
+            currentIdleTime = 1;
         else
-            _currentIdleTime = IdleTime - miningPoints;
+            currentIdleTime = idleTime - miningPoints;
 
-        _progressBarSlider.maxValue = _currentIdleTime;
+        progressBarSlider.maxValue = currentIdleTime;
     }
 
     public void OnJoinButtonClicked()
     {
-        InfoPanel.SetActive(false);
-        PirateSelectionPanel.SetActive(true);
+        infoPanel.SetActive(false);
+        pirateSelectionPanel.SetActive(true);
 
         SetPirateSelectionPanel();
     }
@@ -120,13 +163,13 @@ public class IslandController : MonoBehaviour
     {
         HideSlots();
 
-        var crew = _playerManagementController.GetAvailablePirates();
+        var crew = playerManagementController.GetAvailablePirates();
 
-        for (int i = 0; i < crew.Count; i++)
+        for (var i = 0; i < crew.Count; i++)
         {
             var pirate = crew[i];
 
-            var slot = _slots[i];
+            var slot = slots[i];
             slot.SetActive(true);
             slot.GetComponent<SlotToggleScript>().SetPirate(pirate);
         }
@@ -134,8 +177,7 @@ public class IslandController : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
-        foreach (var slot in _slots)
-        {
+        foreach (var slot in slots)
             if (slot.GetComponent<Toggle>().isOn)
             {
                 var pirate = slot.GetComponent<SlotToggleScript>().GetPirate();
@@ -143,36 +185,41 @@ public class IslandController : MonoBehaviour
 
                 _piratesOnIsland.Add(pirate);
             }
-        }
 
         GetProgressValue();
 
         CloseAllPanels();
 
-        _hasActivityStarted = true;
-        ProgressBar.SetActive(true);
-        JoinButton.SetActive(false);
+        hasActivityStarted = true;
+        progressBar.SetActive(true);
+        joinButton.SetActive(false);
     }
 
     public void OnCollectButtonPressed()
     {
-        InfoPanel.SetActive(false);
-        RewardsPanel.SetActive(true);
-        CollectButton.SetActive(false);
+        infoPanel.SetActive(false);
+        rewardsPanel.SetActive(true);
+        collectButton.SetActive(false);
 
         CollectRewards();
+
+        foreach (var pirate in _piratesOnIsland) pirate.IsBusy = false;
+        _piratesOnIsland.Clear();
+        _piratesSelected = 0;
     }
 
     private void CollectRewards()
     {
-        var rewards = _itemsManager.GetItems(MaxRewardsNumber, Region);
+        var rewards = itemsManager.GetItems(maxRewardsNumber, region);
         var sb = new StringBuilder();
 
         foreach (var item in rewards) sb.Append($"{item.Key.Name} {item.Value}x | {item.Key.Rarity}\n");
-        
-        RewardsText.GetComponent<TextMeshProUGUI>().text = sb.ToString();
 
-        _playerManagementController.StoreItems(rewards);
+        rewardsText.GetComponent<TextMeshProUGUI>().text = sb.ToString();
+
+        playerManagementController.StoreItems(rewards);
+
+        if (renewable) hasRenewingStarted = true;
     }
 
     public void OnCloseButtonPressed()
@@ -180,26 +227,24 @@ public class IslandController : MonoBehaviour
         CloseAllPanels();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        InfoPanel.SetActive(true);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        CloseAllPanels();
-    }
-
     private void CloseAllPanels()
     {
-        InfoPanel.SetActive(false);
-        PirateSelectionPanel.SetActive(false);
-        RewardsPanel.SetActive(false);
+        infoPanel.SetActive(false);
+        pirateSelectionPanel.SetActive(false);
+        rewardsPanel.SetActive(false);
     }
 
     private void HideSlots()
     {
-        foreach (var slot in _slots) slot.SetActive(false);
+        foreach (var slot in slots) slot.SetActive(false);
+    }
+
+    public bool TryAddPirate()
+    {
+        if (_piratesSelected >= capacity) return false;
+        
+        _piratesSelected++;
+        return true;
     }
 }
 

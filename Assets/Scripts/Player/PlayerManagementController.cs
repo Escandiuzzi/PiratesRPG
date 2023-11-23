@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerManagementController : MonoBehaviour
 {
-    [SerializeField]
-    private List<Pirate> _crew;
+    [SerializeField] private List<Pirate> _crew;
 
-    [SerializeField]
-    private Dictionary<Item, int> _inventory;
+    [SerializeField] private Dictionary<Item, int> _inventory;
 
-    void Start()
+    private void Start()
     {
         _crew = new List<Pirate>();
         _inventory = new Dictionary<Item, int>();
@@ -18,13 +16,25 @@ public class PlayerManagementController : MonoBehaviour
         AddFakeCrewData();
     }
 
-    public IDictionary<Item, int> GetInventory() => _inventory;
+    public IDictionary<Item, int> GetInventory()
+    {
+        return _inventory;
+    }
 
-    public Pirate GetPirateById(int id) => _crew.First(x => x.Id == id);
+    public Pirate GetPirateById(int id)
+    {
+        return _crew.First(x => x.Id == id);
+    }
 
-    public IList<Pirate> GetCrew() => _crew;
+    public IList<Pirate> GetCrew()
+    {
+        return _crew;
+    }
 
-    public IList<Pirate> GetAvailablePirates() => _crew.Where(x => x.IsBusy == false).ToList();
+    public IList<Pirate> GetAvailablePirates()
+    {
+        return _crew.Where(x => x.IsBusy == false).ToList();
+    }
 
     private void AddFakeCrewData()
     {
@@ -33,14 +43,15 @@ public class PlayerManagementController : MonoBehaviour
         _crew.Add(CreateFakePirate(2, "Morgan"));
     }
 
-    private Pirate CreateFakePirate(int id, string name) => new(id, name, true);
+    private Pirate CreateFakePirate(int id, string name)
+    {
+        return new Pirate(id, name, true);
+    }
 
     public void StoreItems(IDictionary<Item, int> rewards)
     {
         foreach (var item in rewards)
-        {
             if (_inventory.ContainsKey(item.Key)) _inventory[item.Key] += item.Value;
             else _inventory.Add(item.Key, item.Value);
-        }
     }
 }

@@ -1483,10 +1483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &804470398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,10 +1973,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &965977188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,10 +2301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1333518404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,10 +2842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1568900622
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,10 +3247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1591317362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,10 +3889,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1888803500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,10 +4005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1965244789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,10 +4121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53719a3635e0e4b328b0154bd563da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
-  TinyInfoPanel: {fileID: 1574127828}
-  NameText: {fileID: 965977188}
-  StatsText: {fileID: 804470398}
+  island: {fileID: 0}
+  tinyInfoPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1968555163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,28 +5423,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7943e67959ac49188f1a87474508fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Region: 0
-  IslandType: 0
-  IdleTime: 1
-  Capacity: 2
-  MaxRewardsNumber: 5
-  Renewable: 1
-  _hasActivityStarted: 0
-  InfoPanel: {fileID: 2044713118}
-  PirateSelectionPanel: {fileID: 1427945682}
-  RewardsPanel: {fileID: 8070716305067758146}
-  ProgressBar: {fileID: 7835985342310485913}
-  JoinButton: {fileID: 1568900622}
-  CollectButton: {fileID: 5771790148475817386}
-  RewardsText: {fileID: 7416401107353131172}
-  InfoText: {fileID: 1421087248}
-  _slots: []
-  _currentIdleTime: 0
-  _button: {fileID: 0}
-  _progressBarSlider: {fileID: 0}
-  _playerManagementController: {fileID: 0}
-  _progressValue: 0
-  _itemsManager: {fileID: 0}
+  region: 0
+  islandType: 0
+  idleTime: 6
+  capacity: 2
+  maxRewardsNumber: 2
+  renewable: 1
+  renewWaitTime: 0
+  infoPanel: {fileID: 0}
+  pirateSelectionPanel: {fileID: 0}
+  rewardsPanel: {fileID: 0}
+  progressBar: {fileID: 0}
+  joinButton: {fileID: 0}
+  collectButton: {fileID: 0}
+  rewardsText: {fileID: 0}
+  infoText: {fileID: 0}
+  slots: []
+  currentIdleTime: 0
+  button: {fileID: 0}
+  progressBarSlider: {fileID: 0}
+  playerManagementController: {fileID: 0}
+  progressValue: 0
+  itemsManager: {fileID: 0}
+  hasActivityStarted: 0
+  hasRenewingStarted: 0
 --- !u!1 &7352835238763797710
 GameObject:
   m_ObjectHideFlags: 0

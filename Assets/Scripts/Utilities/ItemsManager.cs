@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 public class ItemsManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<Item> _items;
+    [SerializeField] private List<Item> _items;
 
-    private System.Random _random;
+    private Random _random;
 
-    void Start()
+    private void Start()
     {
-        string filePath = Path.Combine(Application.dataPath, "Resources/Json Files/items.json");
+        var filePath = Path.Combine(Application.dataPath, "Resources/Json Files/items.json");
 
         if (File.Exists(filePath))
         {
-            string jsonContent = File.ReadAllText(filePath);
+            var jsonContent = File.ReadAllText(filePath);
 
             if (!string.IsNullOrEmpty(jsonContent))
             {
@@ -26,24 +26,30 @@ public class ItemsManager : MonoBehaviour
                 foreach (var parsedItem in consumableData.data)
                 {
                     var item = new Item(
-                            parsedItem.id,
-                            parsedItem.name,
-                            (ItemType)parsedItem.type,
-                            parsedItem.heal, parsedItem.damage,
-                            parsedItem.durability,
-                            (Rarity)parsedItem.rarity,
-                            (Region)parsedItem.region
-                        );
+                        parsedItem.id,
+                        parsedItem.name,
+                        (ItemType)parsedItem.type,
+                        parsedItem.heal, parsedItem.damage,
+                        parsedItem.durability,
+                        (Rarity)parsedItem.rarity,
+                        (Region)parsedItem.region
+                    );
 
                     _items.Add(item);
                 }
             }
-            else Debug.LogError("JSON content is empty!");
+            else
+            {
+                Debug.LogError("JSON content is empty!");
+            }
         }
 
-        else Debug.LogError("File not found at path: " + filePath);
+        else
+        {
+            Debug.LogError("File not found at path: " + filePath);
+        }
 
-        _random = new System.Random();
+        _random = new Random();
     }
 
     public IDictionary<Item, int> GetItems(int numberOfItems, Region itemRegion)
@@ -64,9 +70,9 @@ public class ItemsManager : MonoBehaviour
             {
                 Rarity.Rare => GetItemByRarity(rareItems),
                 Rarity.Uncommon => GetItemByRarity(uncommonItems),
-                _ => GetItemByRarity(commonItems),
+                _ => GetItemByRarity(commonItems)
             };
-            
+
             var availableQuantity = numberOfItems - itemsDropped;
             var quantity = _random.Next(1, availableQuantity);
 
@@ -88,7 +94,7 @@ public class ItemsManager : MonoBehaviour
 
     private Rarity SortItemRarity()
     {
-        var rand = new System.Random();
+        var rand = new Random();
         var sortedNumber = rand.Next(101);
 
         return sortedNumber switch
@@ -101,7 +107,6 @@ public class ItemsManager : MonoBehaviour
             _ => Rarity.Common
         };
     }
-
 }
 
 [Serializable]

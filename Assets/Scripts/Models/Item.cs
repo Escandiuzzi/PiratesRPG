@@ -3,6 +3,18 @@ using System;
 [Serializable]
 public class Item
 {
+    public Item(int id, string name, ItemType type, int heal, int damage, int durability, Rarity rarity, Region region)
+    {
+        Id = id;
+        Name = name;
+        Type = type;
+        Heal = heal;
+        Damage = damage;
+        Durability = durability;
+        Rarity = rarity;
+        Region = region;
+    }
+
     public int Id { get; private set; }
 
     public string Name { get; private set; }
@@ -18,18 +30,6 @@ public class Item
     public Rarity Rarity { get; private set; }
 
     public Region Region { get; private set; }
-
-    public Item(int id, string name, ItemType type, int heal, int damage, int durability, Rarity rarity, Region region)
-    {
-        Id = id;
-        Name = name;
-        Type = type;
-        Heal = heal;
-        Damage = damage;
-        Durability = durability;
-        Rarity = rarity;
-        Region = region;
-    }
 }
 
 public enum ItemType

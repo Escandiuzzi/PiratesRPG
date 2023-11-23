@@ -1,7 +1,19 @@
-using System;
+using UnityEngine;
 
 public class Pirate
 {
+    // Weapon { private set; get; }
+    // Shield { private set; get; }
+
+    public Pirate(int id, string name, bool initialize)
+    {
+        Id = id;
+        Name = name;
+        SpecialAttackIds = new int[4];
+
+        if (initialize) InitializePirate();
+    }
+
     public int Id { private set; get; }
 
     public string Name { private set; get; }
@@ -20,21 +32,9 @@ public class Pirate
 
     public int CookingPoints { private set; get; }
 
-    public int[] SpecialAttackIds { private set; get; }
+    public int[] SpecialAttackIds { get; }
 
     public bool IsBusy { set; get; }
-
-    // Weapon { private set; get; }
-    // Shield { private set; get; }
-
-    public Pirate(int id, string name, bool initialize)
-    {
-        Id = id;
-        Name = name;
-        SpecialAttackIds = new int[4];
-
-        if (initialize) InitializePirate();
-    }
 
     private void InitializePirate()
     {
@@ -50,12 +50,13 @@ public class Pirate
         MiningPoints = GenerateStat(7, 3, 5, 2, 4, 1);
         CookingPoints = GenerateStat(7, 3, 5, 2, 4, 1);
 
-       for (int i = 0; i < 4; i ++) SpecialAttackIds[i] = UnityEngine.Random.Range(0, 4);
+        for (var i = 0; i < 4; i++) SpecialAttackIds[i] = Random.Range(0, 4);
     }
 
-    private int GenerateStat(int ultraRareBase, int ultraRareAdd, int rareBase, int rareAdd, int commonBase, int commonAdd)
+    private int GenerateStat(int ultraRareBase, int ultraRareAdd, int rareBase, int rareAdd, int commonBase,
+        int commonAdd)
     {
-        var rand = new Random();
+        var rand = new System.Random();
         var sortedNumber = rand.Next(101);
 
         return sortedNumber switch
@@ -65,7 +66,7 @@ public class Pirate
             // Rare
             > 87 and < 95 => rand.Next(rareBase) + rareAdd,
             // Common
-            _ => rand.Next(commonBase) + commonAdd,
+            _ => rand.Next(commonBase) + commonAdd
         };
-    }    
+    }
 }

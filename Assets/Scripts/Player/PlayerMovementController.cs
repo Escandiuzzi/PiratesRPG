@@ -1,28 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _player;
+    [SerializeField] 
+    private GameObject player;
 
     [SerializeField]
-    private Vector3 _mousePos;
+    private Vector3 mousePos;
 
-    [SerializeField]
+    [SerializeField] 
     private float speed = 2f;
 
-    float angle;
+    [SerializeField] 
+    private bool moving;
+    
+    [SerializeField] 
+    private float angle;
 
-    private bool _moving;
-
-    void Start()
+    private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement(GetEventSystemRaycastResults()))
         {
@@ -30,49 +34,37 @@ public class PlayerMovementController : MonoBehaviour
             RotateToDirection();
         }
 
-        if (_moving)
-        {
-            Move();
-        }
+        if (moving) Move();
     }
 
     /// Returns 'true' if we touched or hovering on Unity UI element.
-    public static bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
-    {
-        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
-        {
-            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+    private static bool IsPointerOverUIElement(IEnumerable<RaycastResult> eventSystemRaycastResults) =>
+        eventSystemRaycastResults.Any(systemRaycastResult => systemRaycastResult.gameObject.layer == LayerMask.NameToLayer("UI"));
+    
 
-            if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("UI"))
-                return true;
-        }
-
-        return false;
-    }
-
-    /// Gets all event systen raycast results of current mouse or touch position.
-    static List<RaycastResult> GetEventSystemRaycastResults()
+    /// Gets all event system raycast results of current mouse or touch position.
+    private static IEnumerable<RaycastResult> GetEventSystemRaycastResults()
     {
         PointerEventData eventData = new(EventSystem.current)
         {
             position = Input.mousePosition
         };
 
-        List<RaycastResult> raysastResults = new();
-        EventSystem.current.RaycastAll(eventData, raysastResults);
+        List<RaycastResult> raycastResults = new();
+        EventSystem.current.RaycastAll(eventData, raycastResults);
 
-        return raysastResults;
+        return raycastResults;
     }
 
     private void SetDestination()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        _moving = true;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        moving = true;
     }
 
     private void RotateToDirection()
     {
-        angle = Mathf.Atan2(_mousePos.y, _mousePos.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
@@ -80,18 +72,23 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (ArrivedAtDestination())
         {
-            _moving = false;
+            moving = false;
             return;
         }
 
         RotateToDirection();
 
-        float step = speed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, _mousePos, step);
+        var step = speed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, mousePos, step);
     }
 
     private bool ArrivedAtDestination()
     {
-        return transform.position == _mousePos;
+        return transform.position == mousePos;
+    }
+
+    public void EnteredInIslandRange()
+    {
+        moving = false;
     }
 }

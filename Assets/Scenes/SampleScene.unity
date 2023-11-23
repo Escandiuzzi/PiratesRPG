@@ -219,7 +219,7 @@ RectTransform:
   - {fileID: 370001688}
   - {fileID: 1733537240}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -807,7 +807,6 @@ GameObject:
   - component: {fileID: 370001692}
   - component: {fileID: 370001691}
   - component: {fileID: 370001690}
-  - component: {fileID: 370001689}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -836,20 +835,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &370001689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370001687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd1d794a98b04eedaa04034a9ba4b0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameText: {fileID: 0}
-  _statsText: {fileID: 0}
 --- !u!114 &370001690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,7 +1209,7 @@ Transform:
   m_Children:
   - {fileID: 1904635802}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692357692
 GameObject:
@@ -1488,9 +1473,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889e22597e2e14e6f8609652e6c5c7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _mousePos: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  mousePos: {x: 0, y: 0, z: 0}
   speed: 1
+  moving: 0
+  angle: 0
 --- !u!212 &931056502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1641,7 +1628,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1836,7 +1823,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1024744969
 GameObject:
@@ -2330,8 +2317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd1d794a98b04eedaa04034a9ba4b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameText: {fileID: 0}
-  _statsText: {fileID: 0}
+  nameText: {fileID: 0}
+  statsText: {fileID: 0}
 --- !u!1 &1745218058
 GameObject:
   m_ObjectHideFlags: 0

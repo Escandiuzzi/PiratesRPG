@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class CharacterResourcesManager : MonoBehaviour
 {
-    [SerializeField]
-    public List<Sprite[]> Resources;
+    [SerializeField] public List<Sprite[]> Resources;
 
     public void Start()
     {

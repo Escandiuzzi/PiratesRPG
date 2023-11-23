@@ -4,36 +4,27 @@ using UnityEngine;
 
 public class PlayerUIController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] _crewSlotButtons;
+    [SerializeField] private GameObject[] _crewSlotButtons;
 
-    [SerializeField]
-    private GameObject _hud;
+    [SerializeField] private GameObject _hud;
 
-    [SerializeField]
-    private GameObject _slotPrefab;
+    [SerializeField] private GameObject _slotPrefab;
 
-    [SerializeField]
-    private GameObject _crewPanel;
+    [SerializeField] private GameObject _crewPanel;
 
-    [SerializeField]
-    private GameObject _infoPanel;
+    [SerializeField] private GameObject _infoPanel;
 
-    [SerializeField]
-    private PlayerManagementController _playerManagement;
+    [SerializeField] private PlayerManagementController _playerManagement;
 
-    [SerializeField]
-    private GameObject _inventoryPanel;
+    [SerializeField] private GameObject _inventoryPanel;
 
-    [SerializeField]
-    private TextMeshProUGUI _inventoryText;
+    [SerializeField] private TextMeshProUGUI _inventoryText;
 
-    [SerializeField]
-    private bool _isCrewPanelOpen;
+    [SerializeField] private bool _isCrewPanelOpen;
 
     private StringBuilder _sb;
 
-    void Start()
+    private void Start()
     {
         _sb = new StringBuilder();
 
@@ -53,19 +44,19 @@ public class PlayerUIController : MonoBehaviour
         _inventoryPanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+            CrewPanelInteraction();
+    }
+
     private void FindSlotButtonsAtPanel()
     {
-        for (int i = 0; i < _crewSlotButtons.Length; i++)
+        for (var i = 0; i < _crewSlotButtons.Length; i++)
         {
             _crewSlotButtons[i] = GameObject.Find($"Slot {i + 1}");
             _crewSlotButtons[i].SetActive(false);
         }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-            CrewPanelInteraction();
     }
 
     private void CrewPanelInteraction()
@@ -108,9 +99,12 @@ public class PlayerUIController : MonoBehaviour
         var inventory = _playerManagement.GetInventory();
 
         foreach (var item in inventory) _sb.Append($"{item.Key.Name} {item.Value}x \n");
-        
+
         _inventoryText.text = _sb.ToString();
     }
 
-    private void HideSlotButtons() { foreach (var slot in _crewSlotButtons) slot.SetActive(false); }
+    private void HideSlotButtons()
+    {
+        foreach (var slot in _crewSlotButtons) slot.SetActive(false);
+    }
 }
