@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class IslandController : MonoBehaviour
@@ -177,6 +178,10 @@ public class IslandController : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
+        if (_piratesSelected == 0) return;
+        
+        if (islandType == IslandType.Battle) SceneManager.LoadScene(1);
+        
         foreach (var slot in slots)
             if (slot.GetComponent<Toggle>().isOn)
             {

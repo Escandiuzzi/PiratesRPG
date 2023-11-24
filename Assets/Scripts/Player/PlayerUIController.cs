@@ -1,26 +1,27 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerUIController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _crewSlotButtons;
+    [SerializeField] private GameObject[] crewSlotButtons;
 
-    [SerializeField] private GameObject _hud;
+    [SerializeField] private GameObject hud;
 
-    [SerializeField] private GameObject _slotPrefab;
+    [SerializeField] private GameObject slotPrefab;
 
-    [SerializeField] private GameObject _crewPanel;
+    [SerializeField] private GameObject crewPanel;
 
-    [SerializeField] private GameObject _infoPanel;
+    [SerializeField] private GameObject infoPanel;
 
-    [SerializeField] private PlayerManagementController _playerManagement;
+    [SerializeField] private PlayerManagementController playerManagement;
 
-    [SerializeField] private GameObject _inventoryPanel;
+    [SerializeField] private GameObject inventoryPanel;
 
-    [SerializeField] private TextMeshProUGUI _inventoryText;
+    [SerializeField] private TextMeshProUGUI inventoryText;
 
-    [SerializeField] private bool _isCrewPanelOpen;
+    [SerializeField] private bool isCrewPanelOpen;
 
     private StringBuilder _sb;
 
@@ -28,20 +29,20 @@ public class PlayerUIController : MonoBehaviour
     {
         _sb = new StringBuilder();
 
-        _crewSlotButtons = new GameObject[8];
+        crewSlotButtons = new GameObject[8];
         FindSlotButtonsAtPanel();
 
-        _hud = GameObject.Find("Hud");
-        _crewPanel = GameObject.Find("CrewSlotPanel");
-        _infoPanel = GameObject.Find("InfoPanel");
-        _inventoryPanel = GameObject.Find("InventoryPanel");
-        _inventoryText = _inventoryPanel.transform.Find("Panel/Text").GetComponent<TextMeshProUGUI>();
+        hud = GameObject.Find("Hud");
+        crewPanel = GameObject.Find("CrewSlotPanel");
+        infoPanel = GameObject.Find("InfoPanel");
+        inventoryPanel = GameObject.Find("InventoryPanel");
+        inventoryText = inventoryPanel.transform.Find("Panel/Text").GetComponent<TextMeshProUGUI>();
 
-        _playerManagement = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
+        playerManagement = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
 
-        _crewPanel.SetActive(false);
-        _infoPanel.SetActive(false);
-        _inventoryPanel.SetActive(false);
+        crewPanel.SetActive(false);
+        infoPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
     }
 
     private void Update()
@@ -52,10 +53,10 @@ public class PlayerUIController : MonoBehaviour
 
     private void FindSlotButtonsAtPanel()
     {
-        for (var i = 0; i < _crewSlotButtons.Length; i++)
+        for (var i = 0; i < crewSlotButtons.Length; i++)
         {
-            _crewSlotButtons[i] = GameObject.Find($"Slot {i + 1}");
-            _crewSlotButtons[i].SetActive(false);
+            crewSlotButtons[i] = GameObject.Find($"Slot {i + 1}");
+            crewSlotButtons[i].SetActive(false);
         }
     }
 
@@ -63,28 +64,28 @@ public class PlayerUIController : MonoBehaviour
     {
         UpdateInventoryInfo();
 
-        _crewPanel.SetActive(!_crewPanel.activeSelf);
-        _inventoryPanel.SetActive(!_inventoryPanel.activeSelf);
+        crewPanel.SetActive(!crewPanel.activeSelf);
+        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
 
-        if (_isCrewPanelOpen)
+        if (isCrewPanelOpen)
         {
-            _crewPanel.SetActive(false);
-            _infoPanel.SetActive(false);
-            _isCrewPanelOpen = false;
+            crewPanel.SetActive(false);
+            infoPanel.SetActive(false);
+            isCrewPanelOpen = false;
             HideSlotButtons();
             return;
         }
 
-        _crewPanel.SetActive(true);
-        _isCrewPanelOpen = true;
+        crewPanel.SetActive(true);
+        isCrewPanelOpen = true;
 
-        var crew = _playerManagement.GetCrew();
+        var crew = playerManagement.GetCrew();
 
         foreach (var pirate in crew)
         {
             var index = crew.IndexOf(pirate);
 
-            var button = _crewSlotButtons[index];
+            var button = crewSlotButtons[index];
 
             button.GetComponentInChildren<TextMeshProUGUI>().text = pirate.Name;
             button.GetComponent<CrewSlotButtonHandler>().PirateId = pirate.Id;
@@ -96,15 +97,15 @@ public class PlayerUIController : MonoBehaviour
     {
         _sb.Clear();
 
-        var inventory = _playerManagement.GetInventory();
+        var inventory = playerManagement.GetInventory();
 
         foreach (var item in inventory) _sb.Append($"{item.Key.Name} {item.Value}x \n");
 
-        _inventoryText.text = _sb.ToString();
+        inventoryText.text = _sb.ToString();
     }
 
     private void HideSlotButtons()
     {
-        foreach (var slot in _crewSlotButtons) slot.SetActive(false);
+        foreach (var slot in crewSlotButtons) slot.SetActive(false);
     }
 }

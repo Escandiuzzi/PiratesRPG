@@ -1647,15 +1647,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c170ec9654b40f7b6ad8887a2b5bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crewSlotButtons: []
-  _hud: {fileID: 0}
-  _slotPrefab: {fileID: 0}
-  _crewPanel: {fileID: 0}
-  _infoPanel: {fileID: 0}
-  _playerManagement: {fileID: 0}
-  _inventoryPanel: {fileID: 0}
-  _inventoryText: {fileID: 0}
-  _isCrewPanelOpen: 0
+  crewSlotButtons: []
+  hud: {fileID: 0}
+  slotPrefab: {fileID: 0}
+  crewPanel: {fileID: 0}
+  infoPanel: {fileID: 0}
+  playerManagement: {fileID: 0}
+  inventoryPanel: {fileID: 0}
+  inventoryText: {fileID: 0}
+  isCrewPanelOpen: 0
 --- !u!1001 &958862868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3019,6 +3019,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 1904635803, guid: 1d03b03c562404ee39026dc1dfd91cf3, type: 3}
+      propertyPath: islandType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6962614804489204168, guid: 1d03b03c562404ee39026dc1dfd91cf3, type: 3}
       propertyPath: m_RootOrder
       value: 0

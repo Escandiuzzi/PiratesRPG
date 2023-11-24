@@ -16,8 +16,6 @@ public class PirateInfoPanelScript : MonoBehaviour
 
     public void SetPirate(int pirateId)
     {
-        Debug.Log(gameObject.name);
-        
         if (_playerManagementController == null)
             _playerManagementController = GameObject.Find("PlayerData").GetComponent<PlayerManagementController>();
 
