@@ -11,6 +11,11 @@ public class ItemsManager : MonoBehaviour
 
     private Random _random;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         var filePath = Path.Combine(Application.dataPath, "Resources/Json Files/items.json");

@@ -12,6 +12,8 @@ public class IslandController : MonoBehaviour
 
     public IslandType islandType;
 
+    public Difficulty difficulty;
+
     public float idleTime;
 
     public int capacity;
@@ -21,7 +23,10 @@ public class IslandController : MonoBehaviour
     public bool renewable;
         
     public int renewWaitTime;
-   
+
+    [SerializeField] 
+    private GameObject gameManager;
+    
     [SerializeField]
     private GameObject infoPanel;
 
@@ -85,6 +90,7 @@ public class IslandController : MonoBehaviour
         collectButton = infoPanel.transform.Find("CollectButton").gameObject;
         infoText = infoPanel.transform.Find("InfoText").gameObject;
         rewardsText = rewardsPanel.transform.Find("ItemsText").gameObject;
+        gameManager = GameObject.Find("GameManager");
         
         progressBarSlider = progressBar.GetComponent<Slider>();
         _piratesOnIsland = new List<Pirate>();
@@ -179,9 +185,7 @@ public class IslandController : MonoBehaviour
     public void OnStartButtonPressed()
     {
         if (_piratesSelected == 0) return;
-        
-        if (islandType == IslandType.Battle) SceneManager.LoadScene(1);
-        
+
         foreach (var slot in slots)
             if (slot.GetComponent<Toggle>().isOn)
             {
@@ -190,6 +194,14 @@ public class IslandController : MonoBehaviour
 
                 _piratesOnIsland.Add(pirate);
             }
+        
+        if (islandType == IslandType.Battle)
+        {
+            gameManager.GetComponent<GameManager>().Pirates = _piratesOnIsland;
+            gameManager.GetComponent<GameManager>().Difficulty = difficulty;
+         
+            SceneManager.LoadScene(1);
+        }
 
         GetProgressValue();
 
@@ -258,4 +270,11 @@ public enum IslandType
     Mining = 0,
     Exploration = 1,
     Battle = 2
+}
+
+public enum Difficulty
+{
+    Easy,
+    Medium,
+    Hard
 }
