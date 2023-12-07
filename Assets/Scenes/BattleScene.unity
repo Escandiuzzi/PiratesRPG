@@ -2988,7 +2988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPirates: 2
-  difficulty: 0
+  difficulty: 1
 --- !u!4 &1255186682
 Transform:
   m_ObjectHideFlags: 0

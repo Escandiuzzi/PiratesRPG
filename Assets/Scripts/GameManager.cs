@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
    
    public IList<Pirate> Pirates { get; set; }
 
-   public Difficulty Difficulty { get; set; }
+   public Difficulty Difficulty
+   {
+      get => difficulty;
+      set => difficulty = value;
+   }
    
    private void Awake()
    {
