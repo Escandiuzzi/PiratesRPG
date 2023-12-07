@@ -26,9 +26,9 @@ public class ItemsManager : MonoBehaviour
 
             if (!string.IsNullOrEmpty(jsonContent))
             {
-                var consumableData = JsonUtility.FromJson<ItemsData>(jsonContent);
+                var itemsData = JsonUtility.FromJson<ItemsData>(jsonContent);
 
-                foreach (var parsedItem in consumableData.data)
+                foreach (var parsedItem in itemsData.data)
                 {
                     var item = new Item(
                         parsedItem.id,

@@ -1,16 +1,17 @@
-using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using Models;
 
 public class Pirate
 {
     // Weapon { private set; get; }
     // Shield { private set; get; }
 
-    public Pirate(int id, string name, bool initialize)
+    public Pirate(int id, string name, bool initialize, bool isAIControlled = false)
     {
         Id = id;
         Name = name;
-        SpecialAttackIds = new int[4];
-
+        IsAIControlled = isAIControlled;
+        
         if (initialize) InitializePirate();
     }
 
@@ -18,8 +19,16 @@ public class Pirate
 
     public string Name { private set; get; }
 
-    public int Hp { private set; get; }
-
+    private int _hp;
+    public int Hp {
+        set
+        {
+            _hp = value;
+            if (_hp < 0) _hp = 0;
+        }
+        get => _hp;
+    }
+    
     public int MaxHp { private set; get; }
 
     public int Energy { private set; get; }
@@ -32,8 +41,10 @@ public class Pirate
 
     public int CookingPoints { private set; get; }
 
-    public int[] SpecialAttackIds { get; }
+    public IEnumerable<Special> Specials { private set; get; }
 
+    public bool IsAIControlled { private set; get; }
+    
     public bool IsBusy { set; get; }
 
     private void InitializePirate()
@@ -50,7 +61,7 @@ public class Pirate
         MiningPoints = GenerateStat(7, 3, 5, 2, 4, 1);
         CookingPoints = GenerateStat(7, 3, 5, 2, 4, 1);
 
-        for (var i = 0; i < 4; i++) SpecialAttackIds[i] = Random.Range(0, 4);
+        Specials = SpecialAttackManager.GetSpecials();
     }
 
     private int GenerateStat(int ultraRareBase, int ultraRareAdd, int rareBase, int rareAdd, int commonBase,
