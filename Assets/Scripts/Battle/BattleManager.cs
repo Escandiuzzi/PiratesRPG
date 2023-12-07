@@ -113,7 +113,7 @@ public class BattleManager : MonoBehaviour
     private void NextTurn()
     {
         _currentAttackerIndex++;
-
+        
         if (_currentAttackerIndex >= _piratesInBattle.Count) _currentAttackerIndex = 0;
 
         _currentAttacker = _piratesInBattle[_currentAttackerIndex];
@@ -139,7 +139,7 @@ public class BattleManager : MonoBehaviour
         ExecuteAttack(pirate, _currentAttacker.AttackingPoints);
         UpdateHealthBar(enemyIndex, false);
         
-        _battleButtonActions.SetActionsPanel();
+        NextTurn();
     }
 
     public void ExecutePlayerAttack(int index)

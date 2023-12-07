@@ -14,6 +14,9 @@ public class BattleButtonActionsHandler : MonoBehaviour
     [SerializeField]
     private GameObject specialAttacksGroup;
 
+    [SerializeField] 
+    private GameObject specialAttackInfo;
+
     private BattleManager _battleManager;
 
     private GameObject[] _specialAttackButtons;
@@ -25,7 +28,8 @@ public class BattleButtonActionsHandler : MonoBehaviour
         actionsGroup = canvas.transform.Find("ActionsGroup").gameObject;
         enemySelectionGroup = canvas.transform.Find("EnemySelectionGroup").gameObject;
         specialAttacksGroup = canvas.transform.Find("SpecialAttacksGroup").gameObject;
-
+        specialAttackInfo = canvas.transform.Find("SpecialAttackInfo").gameObject;
+        
         _battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 
         _specialAttackButtons = new GameObject[4];
@@ -66,7 +70,7 @@ public class BattleButtonActionsHandler : MonoBehaviour
 
         var specials = _battleManager.GetAttackerSpecialAttacks();
 
-        HideAllSpecialButton();
+        HideAllSpecialButtons();
 
         for (var i = 0; i < specials.Count; i++)
         {
@@ -75,7 +79,7 @@ public class BattleButtonActionsHandler : MonoBehaviour
         }
     }
 
-    private void HideAllSpecialButton()
+    private void HideAllSpecialButtons()
     {
         for (var i = 0; i < 4; i++) specialAttacksGroup.transform.Find($"Slot {i + 1}").gameObject.SetActive(false);
     }
@@ -83,6 +87,7 @@ public class BattleButtonActionsHandler : MonoBehaviour
     public void OnSpecialAttackButtonPressed(int index)
     {
         HideAllPanels();
+        specialAttackInfo.SetActive(false);
         actionsGroup.SetActive(true);
     }
     
